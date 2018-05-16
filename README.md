@@ -1,2 +1,2 @@
-# java_class_greeter
-An app that allows you to enter a list of students and greets them each
+# Cost Calculator
+An app used to calculate cost and experiment with Java.
