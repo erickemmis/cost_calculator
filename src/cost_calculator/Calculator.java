@@ -8,8 +8,11 @@ import java.text.DecimalFormat;
 
 public class Calculator {
 	
-	private static double TAX = .07;
+	private double taxRate = .07;
+	private double total = 0;
 	private List<Double> listOfCosts = new ArrayList<Double>();
+	private Scanner scanner = new Scanner(System.in);
+	
 	
 	//Default constructor
 	public Calculator() {
@@ -17,7 +20,7 @@ public class Calculator {
 	
 	public Calculator(double tax) {
 		// initialize calculator with Tax if passed in
-		TAX = tax;
+		taxRate = tax;
 	}
 	
 	public void promptForCost() {
@@ -28,35 +31,34 @@ public class Calculator {
 		System.out.println("Add another charge?");
 	}
 	
-	public double getCostFromConsole(Scanner scanner) {
+	public double getCostFromConsole() {
 		double cost = Double.parseDouble(scanner.nextLine());
 		return cost;
 	}
 	
-	public String getContinueFromConsole(Scanner scanner) {
+	public String getContinueFromConsole() {
 		String prompt = scanner.nextLine();
 		return prompt;
 	}
 	
 	
 	public void addCost(double cost) {
+		
 		listOfCosts.add(cost);
 	}
 	
 	public double getTotal() {
-		double total = 0;
-		//add up total from collected costs
-		for(double costs : listOfCosts) {
-			total += costs;
+		//TODO is this a good idea to recalculate every time get Total is called
+		for(double cost : listOfCosts) {
+			total += cost;
 		}
-		//be sure formated to 2 decimals
-		
+		// return total		
 		return total;
 	}
 	
 	public double getTax(double cost) {
 		//calculate the total tax
-		double tax = cost * TAX;
+		double tax = cost * taxRate;
 		
 		//return new total
 		return tax;
@@ -76,42 +78,63 @@ public class Calculator {
 	public void printTotals() {
 		
 		// gather totals
-		double total = this.getTotal();
-		double tax = this.getTax(total);
-		double grandTotal = total + tax;
+		total = getTotal();
+		double taxAmount = getTax(total);
+		double grandTotal = total + taxAmount;
 		
 		// print totals in console
 		System.out.println(
 				"Your sub-total is: " + formatToCurrencyString(total) + 
-				", your tax is: " + formatToCurrencyString(tax) + 
+				", your tax is: " + formatToCurrencyString(taxAmount) + 
 				" and your total is: " + formatToCurrencyString(grandTotal)
 			);
 		
 	}
 	
-	public void retrieveCosts(Calculator calculator, Scanner scanner) {
+	public void retrieveCosts(Calculator calculator) {
 		
 		//prompt for cost
 		calculator.promptForCost();
 		
 		//retrieve cost
-		double cost = calculator.getCostFromConsole(scanner);
+		double cost = calculator.getCostFromConsole();
 		
 		//add cost
 		calculator.addCost(cost);
 		
-		//prompt for continue
-		calculator.promptToContinue();
-		
-		//retrieve continue response
-		String userResponse = calculator.getContinueFromConsole(scanner);
-		
-		if(!userResponse.equalsIgnoreCase(Command.YES)) {
+		//check to see if user
+		if(!continueCheck(calculator)) {
 			return;
 		}
 		
-		// recurse
-		this.retrieveCosts(calculator, scanner);	
+		// recurse //TODO do I need a this?
+		this.retrieveCosts(calculator);	
+	}
+	
+	
+	
+	public static boolean continueCheck(Calculator calculator) {	
+		
+		//prompt and get command from user in console
+		calculator.promptToContinue();
+		String userResponse = calculator.getContinueFromConsole();
+		
+		
+		
+		//TODO should I be doing recursion as opposed to a while loop?
+		while(!CommandValidator.isValid(userResponse)) {
+			System.out.println("Please enter a valid command yes or no: ");
+			userResponse = calculator.getContinueFromConsole();
+		}
+		
+		// if user Response equals yes return true
+		if(userResponse.equalsIgnoreCase(Command.YES)) {
+			return true;
+		}
+		
+		//otherwise return false
+		return false;
+		
 	}
 	
 
