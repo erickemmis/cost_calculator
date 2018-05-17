@@ -7,11 +7,8 @@ import java.text.DecimalFormat;
 
 
 public class Calculator {
-
-	/*constants*/
-	public static final String YES = "yes";
 	
-	private static double TAX = .07; 
+	private static double TAX = .07;
 	private List<Double> listOfCosts = new ArrayList<Double>();
 	
 	//Default constructor
@@ -109,13 +106,15 @@ public class Calculator {
 		//retrieve continue response
 		String userResponse = calculator.getContinueFromConsole(scanner);
 		
-		if(!userResponse.equalsIgnoreCase(YES)) {
+		if(!userResponse.equalsIgnoreCase(Command.YES)) {
 			return;
 		}
 		
 		// recurse
 		this.retrieveCosts(calculator, scanner);	
 	}
+	
+
 	
 	
 }

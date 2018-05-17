@@ -12,10 +12,8 @@ public class App {
 		Scanner scanner = new Scanner(System.in);
 		
 		// collect costs through addCosts
-		//TODO
 		calculator.retrieveCosts(calculator, scanner);
 
-		
 		// print totals
 		calculator.printTotals();
 		
