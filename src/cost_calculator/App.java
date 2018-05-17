@@ -21,9 +21,8 @@ public class App {
 		double tax = calculator.getTax(total);
 		
 		// print totals
-		System.out.println("Your sub-total is: $" + total + 
-				   ", your tax is: $" + tax+ 
-				   " and your total is: $" + (total + tax));		
+		//TODO
+		calculator.printTotals();
 		
 	}
 	

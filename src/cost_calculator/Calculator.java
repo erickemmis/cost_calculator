@@ -6,10 +6,15 @@ import java.util.Scanner;
 
 public class Calculator {
 	private List<Double> listOfCosts = new ArrayList<Double>();
-	private static final double TAX = .07; 
+	private static double TAX = .07; 
 	
 	public Calculator() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Calculator(double tax) {
+		// initialize calculator with Tax if passed in
+		TAX = tax;
 	}
 	
 	public void promptForCost() {
@@ -61,6 +66,24 @@ public class Calculator {
 	double number = Math.round(100 * cost) * .01;
 	return number;
 	}
+	
+	public void printTotals() {
+		
+		// gather totals
+		double total = this.getTotal();
+		double tax = this.getTax(total);
+		double grandTotal = total + tax;
+		
+		// print totals in console
+		System.out.println(
+				"Your sub-total is: $" + total + 
+				", your tax is: $" + tax+ 
+				" and your total is: $" + grandTotal
+			);
+		
+	}
+	
+	
 	
 
 		
