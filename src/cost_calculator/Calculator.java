@@ -3,13 +3,19 @@ package cost_calculator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.text.DecimalFormat;
+
 
 public class Calculator {
-	private List<Double> listOfCosts = new ArrayList<Double>();
-	private static double TAX = .07; 
+
+	/*constants*/
+	public static final String YES = "yes";
 	
+	private static double TAX = .07; 
+	private List<Double> listOfCosts = new ArrayList<Double>();
+	
+	//Default constructor
 	public Calculator() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Calculator(double tax) {
@@ -54,17 +60,20 @@ public class Calculator {
 	public double getTax(double cost) {
 		//calculate the total tax
 		double tax = cost * TAX;
-		//format to 2 decimal places
-		tax = formatCurrency(tax);
+		
 		//return new total
 		return tax;
 	}
 
-	public static double formatCurrency(double cost) {
+	public static String formatToCurrencyString(double cost) {
+	
+	String formatedCost = "$";
 	
 	/*move decimal trim end and return decimal*/
-	double number = Math.round(100 * cost) * .01;
-	return number;
+	DecimalFormat formatter = new DecimalFormat("#.##");
+	formatedCost += formatter.format(cost);
+	
+	return formatedCost;
 	}
 	
 	public void printTotals() {
@@ -76,16 +85,37 @@ public class Calculator {
 		
 		// print totals in console
 		System.out.println(
-				"Your sub-total is: $" + total + 
-				", your tax is: $" + tax+ 
-				" and your total is: $" + grandTotal
+				"Your sub-total is: " + formatToCurrencyString(total) + 
+				", your tax is: " + formatToCurrencyString(tax) + 
+				" and your total is: " + formatToCurrencyString(grandTotal)
 			);
 		
 	}
 	
-	
-	
-
+	public void retrieveCosts(Calculator calculator, Scanner scanner) {
 		
-
+		//prompt for cost
+		calculator.promptForCost();
+		
+		//retrieve cost
+		double cost = calculator.getCostFromConsole(scanner);
+		
+		//add cost
+		calculator.addCost(cost);
+		
+		//prompt for continue
+		calculator.promptToContinue();
+		
+		//retrieve continue response
+		String userResponse = calculator.getContinueFromConsole(scanner);
+		
+		if(!userResponse.equalsIgnoreCase(YES)) {
+			return;
+		}
+		
+		// recurse
+		this.retrieveCosts(calculator, scanner);	
+	}
+	
+	
 }
