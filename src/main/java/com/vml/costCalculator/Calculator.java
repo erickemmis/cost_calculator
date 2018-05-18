@@ -15,6 +15,7 @@ import java.util.Scanner;
  *
  *	Wouldn't it be awesome if we had a total printer!?
  */
+
 public class Calculator {
 	
 	private double taxRate = .07;

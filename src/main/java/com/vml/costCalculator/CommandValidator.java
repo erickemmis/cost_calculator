@@ -7,16 +7,20 @@ public class CommandValidator {
 	//focus on what is valid // keep it concise
 	public static boolean isValid(String response) {
 		
-		//TODO validate commands return true if a commands is in list of commands
+		//TODO validate commands return true if a commands is in list of commands and don't use an or!
 		
-		//check if yes or no is the response
+		/*catch string if null or empty*/
+		
+		
 		if(response.equalsIgnoreCase(Command.YES) || response.equalsIgnoreCase(Command.NO)) {
-		return true;
+			return true;
 		}
 		
 		//otherwise not valid
 		return false;
 	}
+	
+	
 	
 	/**
 	 * Checks if a response is "yes" or "no". Case insensitive test.
@@ -47,5 +51,6 @@ public class CommandValidator {
 		/* any set of chars that aren't yes or no is invalid */
 		return false;
 	}
+	
 		
 }
