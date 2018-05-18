@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * A Calculator class that will behave as follows
  * 1. Greet the user and explain how to use the calculator
@@ -24,8 +26,9 @@ public class Calculator {
 	private Scanner scanner = new Scanner(System.in);
 	
 	
-	//Default constructor
+	
 	public Calculator() {
+		//Default constructor
 	}
 	
 	public Calculator(double tax) {
@@ -41,14 +44,9 @@ public class Calculator {
 		System.out.println("Add another charge?");
 	}
 	
-	public double getCostFromConsole() {
-		double cost = Double.parseDouble(scanner.nextLine());
-		return cost;
-	}
-	
-	public String getContinueFromConsole() {
-		String prompt = scanner.nextLine();
-		return prompt;
+	public String getResponseFromConsole() {
+		String response = scanner.nextLine();
+		return response;
 	}
 	
 	
@@ -58,11 +56,12 @@ public class Calculator {
 	}
 	
 	public double getTotal() {
-		//TODO is this a good idea to recalculate every time get Total is called
+		
+		//calculate total to return
 		for(double cost : listOfCosts) {
 			total += cost;
 		}
-		// return total		
+		
 		return total;
 	}
 	
@@ -95,41 +94,29 @@ public class Calculator {
 		//prompt for cost
 		promptForCost();
 		
-		//retrieve cost
-		double cost = getCostFromConsole();
+		//retrieve response
+		String response = getResponseFromConsole();
 		
-		//add cost
-		addCost(cost);
+		//validate response as a valid input
+		boolean valid = CommandValidator.isValidResponse(response);
 		
-		//check to see if user
-		if(!continueCheck()) {
+		//check if exiting with null
+		if (!valid) {
+			System.out.println("Invalid number...");
+		}
+		
+		//if blank entry exit
+		if (StringUtils.isBlank(response)) {
+			System.out.println("done");
 			return;
 		}
 		
-		// recurse //TODO do I need a this?
-		this.retrieveCosts();	
-	}
-	
-	public boolean continueCheck() {	
-		
-		//prompt and get command from user in console
-		promptToContinue();
-		String userResponse = getContinueFromConsole();
-		
-		//TODO should I be doing recursion as opposed to a while loop?
-		while(!CommandValidator.isValid(userResponse)) {
-			System.out.println("Please enter a valid command yes or no: ");
-			userResponse = getContinueFromConsole();
+		//add cost
+		if(valid) {
+			addCost(Double.parseDouble(response));
 		}
-		
-		// if user Response equals yes return true
-		if(userResponse.equalsIgnoreCase(Command.YES)) {
-			return true;
-		}
-		
-		//otherwise return false
-		return false;
-		
+
+		retrieveCosts();	
 	}
 	
 }
