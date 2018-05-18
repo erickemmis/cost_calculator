@@ -7,7 +7,7 @@ public class App {
 		Calculator calculator = new Calculator();
 		
 		// collect costs through addCosts
-		calculator.retrieveCosts(calculator);
+		calculator.retrieveCosts();
 
 		// print totals
 		calculator.printTotals();

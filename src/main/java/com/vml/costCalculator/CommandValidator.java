@@ -18,8 +18,6 @@ public class CommandValidator {
 		return false;
 	}
 	
-	
-	
 	/**
 	 * Checks if a response is "yes" or "no". Case insensitive test.
 	 * @param response - String containing the response text

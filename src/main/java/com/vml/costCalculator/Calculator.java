@@ -90,36 +90,36 @@ public class Calculator {
 		
 	}
 	
-	public void retrieveCosts(Calculator calculator) {
+	public void retrieveCosts() {
 		
 		//prompt for cost
-		calculator.promptForCost();
+		promptForCost();
 		
 		//retrieve cost
-		double cost = calculator.getCostFromConsole();
+		double cost = getCostFromConsole();
 		
 		//add cost
-		calculator.addCost(cost);
+		addCost(cost);
 		
 		//check to see if user
-		if(!continueCheck(calculator)) {
+		if(!continueCheck()) {
 			return;
 		}
 		
 		// recurse //TODO do I need a this?
-		this.retrieveCosts(calculator);	
+		this.retrieveCosts();	
 	}
 	
-	public static boolean continueCheck(Calculator calculator) {	
+	public boolean continueCheck() {	
 		
 		//prompt and get command from user in console
-		calculator.promptToContinue();
-		String userResponse = calculator.getContinueFromConsole();
+		promptToContinue();
+		String userResponse = getContinueFromConsole();
 		
 		//TODO should I be doing recursion as opposed to a while loop?
 		while(!CommandValidator.isValid(userResponse)) {
 			System.out.println("Please enter a valid command yes or no: ");
-			userResponse = calculator.getContinueFromConsole();
+			userResponse = getContinueFromConsole();
 		}
 		
 		// if user Response equals yes return true
