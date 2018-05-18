@@ -1,6 +1,5 @@
 package com.vml.costCalculator;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
