@@ -4,6 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * A Calculator class that will behave as follows
+ * 1. Greet the user and explain how to use the calculator
+ * 2. The user then enters a. valid number, b. empty string, c. something else
+ * 
+ * If the user entered a valid number (add it to our list of costs)
+ * If the user entered an empty string (they are done, display the details)
+ * If the user entered something else (prompt for valid input) 
+ *
+ *	Wouldn't it be awesome if we had a total printer!?
+ */
 public class Calculator {
 	
 	private double taxRate = .07;
