@@ -62,17 +62,6 @@ public class Calculator {
 		//return new total
 		return tax;
 	}
-
-	public static String formatToCurrencyString(double cost) {
-	
-	String formatedCost = "$";
-	
-	/*move decimal trim end and return decimal*/
-	DecimalFormat formatter = new DecimalFormat("#.##");
-	formatedCost += formatter.format(cost);
-	
-	return formatedCost;
-	}
 	
 	public void printTotals() {
 		
@@ -83,9 +72,9 @@ public class Calculator {
 		
 		// print totals in console
 		System.out.println(
-				"Your sub-total is: " + formatToCurrencyString(total) + 
-				", your tax is: " + formatToCurrencyString(taxAmount) + 
-				" and your total is: " + formatToCurrencyString(grandTotal)
+				"Your sub-total is: " + CurrencyFormatter.formatDoubleToUSD(total) + 
+				", your tax is: " + CurrencyFormatter.formatDoubleToUSD(taxAmount) + 
+				" and your total is: " + CurrencyFormatter.formatDoubleToUSD(grandTotal)
 			);
 		
 	}
