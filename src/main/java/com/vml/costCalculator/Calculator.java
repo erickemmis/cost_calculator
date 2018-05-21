@@ -106,7 +106,7 @@ public class Calculator {
 		if(valid) {
 			addCost(Double.parseDouble(response));
 		}
-
+		
 		retrieveCosts();	
 	}
 	
