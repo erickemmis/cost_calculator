@@ -58,7 +58,7 @@ public class Calculator {
 	}
 	
 	public double getNetTotal() {
-		
+		//return total for 
 		return total;
 	}
 
