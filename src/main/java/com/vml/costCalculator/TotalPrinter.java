@@ -17,9 +17,9 @@ public class TotalPrinter {
 		double grandTotal = calculator.getTotalCost()
 ;
 		System.out.println(
-				"Sub-total is: " + CurrencyFormatter.formatDoubleToUSD(netTotal) + 
-				"/n Tax is: " + CurrencyFormatter.formatDoubleToUSD(taxAmount) + 
-				"/n Total is: " + CurrencyFormatter.formatDoubleToUSD(grandTotal)
+				"\nNet Total: " + CurrencyFormatter.formatDoubleToUSD(netTotal) + 
+				"\nTax: " + CurrencyFormatter.formatDoubleToUSD(taxAmount) + 
+				"\nTotal: " + CurrencyFormatter.formatDoubleToUSD(grandTotal)
 			);		
 		
 	}

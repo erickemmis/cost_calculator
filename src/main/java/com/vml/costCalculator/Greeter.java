@@ -14,7 +14,7 @@ public class Greeter {
 	}
 	// provides instructions for user to use calculator
 	public void provideCalculatorInstructions() {
-		System.out.println("When using the cost calulator you will a numeric value when prompted and hit the return key."
+		System.out.println("When using the cost calulator you will enter a price when prompted and hit the return key."
 					   + "\nOnce you are finished just hit return again and you will be provided with the totals");
 	}
 	
