@@ -14,7 +14,7 @@ public class CurrencyFormatter {
 		String formatedCost = "$";
 		
 		/*move decimal trim end and return decimal*/
-		DecimalFormat formatter = new DecimalFormat("#.##");
+		DecimalFormat formatter = new DecimalFormat("#0.00");
 		formatedCost += formatter.format(cost);
 		
 		return formatedCost;
