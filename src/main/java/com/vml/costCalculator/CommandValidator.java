@@ -6,10 +6,11 @@ import org.apache.commons.lang.StringUtils;
 public class CommandValidator {
 	
 	/**
-	 * enter a 
-	 * @param response
-	 * @return
+	 * Checks if a response is able to be pares as a double or blank.
+	 * @param response - String containing the response text
+	 * @return boolean indicating if the response is valid.
 	 */
+	
 	public static boolean isValidResponse(String response) {
 		
 		/* catches if the string is null or empty */
@@ -26,7 +27,12 @@ public class CommandValidator {
 		return false;
 	}
 	
-	//check if the number value is able to be parsed to double
+	
+	/**
+	 * Checks if the input is a a double.
+	 * @param input - String containing input text
+	 * @return boolean indicating if the string is a double or not
+	 */
 	public static boolean isNumeric(String input) {
 		  
 		try  
@@ -40,34 +46,5 @@ public class CommandValidator {
 		
 		  return true;  
 	}
-
-	
-	
-	
-	/**
-	 * Checks if a response is "yes" or "no". Case insensitive test.
-	 * @param response - String containing the response text
-	 * @return boolean indicating if the response is valid.
-	 */
-	public static boolean isValidYesNoResponse(String response) {
-		
-		/* we know the string isn't null or empty */
-		/* trim leading and following spaces */
-		String trimmedResponse = response.trim();
-		
-		/* true if case-insensitive 'yes' */
-		if (StringUtils.equalsIgnoreCase(Command.YES, trimmedResponse)) {
-			return true;
-		}
-		
-		/* true if case-insensitive 'no' */
-		if (StringUtils.equalsIgnoreCase(Command.NO, trimmedResponse)) {
-			return true;
-		}
-		
-		/* any set of chars that aren't yes or no is invalid */
-		return false;
-	}
-	
 		
 }

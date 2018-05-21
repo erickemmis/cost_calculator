@@ -51,20 +51,17 @@ public class Calculator {
 	
 	
 	public void addCost(double cost) {
-		
+		//add cost to total
+		total += cost;
+		//add cost to list
 		listOfCosts.add(cost);
 	}
 	
-	public double getTotal() {
-		
-		//calculate total to return
-		for(double cost : listOfCosts) {
-			total += cost;
-		}
+	public double getNetTotal() {
 		
 		return total;
 	}
-	
+
 	public double getTax(double cost) {
 		//calculate the total tax
 		double tax = cost * taxRate;
@@ -73,21 +70,15 @@ public class Calculator {
 		return tax;
 	}
 	
-	public void printTotals() {
+	public double getTotalCost() {
+		//calculate the total cost with tax
+		double totalCost = total + getTax(total);
 		
-		// gather totals
-		total = getTotal();
-		double taxAmount = getTax(total);
-		double grandTotal = total + taxAmount;
-		
-		// print totals in console
-		System.out.println(
-				"Your sub-total is: " + CurrencyFormatter.formatDoubleToUSD(total) + 
-				", your tax is: " + CurrencyFormatter.formatDoubleToUSD(taxAmount) + 
-				" and your total is: " + CurrencyFormatter.formatDoubleToUSD(grandTotal)
-			);
-		
+		//return new total
+		return totalCost;
 	}
+	
+
 	
 	public void retrieveCosts() {
 		
@@ -100,9 +91,9 @@ public class Calculator {
 		//validate response as a valid input
 		boolean valid = CommandValidator.isValidResponse(response);
 		
-		//check if exiting with null
+		//if invalid entry prompt to try again
 		if (!valid) {
-			System.out.println("Invalid number...");
+			System.out.println("Invalid number... Please try again");
 		}
 		
 		//if blank entry exit
@@ -118,5 +109,7 @@ public class Calculator {
 
 		retrieveCosts();	
 	}
+	
+
 	
 }
