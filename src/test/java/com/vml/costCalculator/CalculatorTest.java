@@ -103,15 +103,16 @@ public class CalculatorTest {
 		assertTrue(isValid);
 	}
 	
-	
-	
-	
-	
-	
+	@Test
+	public void retrieveCosts_shouldAddSystemInputToCalculatorTotal() {
 
-	
-	
-	
+		Calculator calculator = new Calculator();
+		boolean isValid = true;
+		
+		//TODO calculator.retrieveCosts();
+
+		assertTrue(isValid);
+	}
 	
 	
 	
