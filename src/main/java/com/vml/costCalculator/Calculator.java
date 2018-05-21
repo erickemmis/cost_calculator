@@ -49,7 +49,6 @@ public class Calculator {
 		return response;
 	}
 	
-	
 	public void addCost(double cost) {
 		//add cost to total
 		total += cost;
@@ -58,7 +57,7 @@ public class Calculator {
 	}
 	
 	public double getNetTotal() {
-		
+		//return total for 
 		return total;
 	}
 
@@ -98,7 +97,6 @@ public class Calculator {
 		
 		//if blank entry exit
 		if (StringUtils.isBlank(response)) {
-			System.out.println("done");
 			return;
 		}
 		
@@ -106,7 +104,7 @@ public class Calculator {
 		if(valid) {
 			addCost(Double.parseDouble(response));
 		}
-
+		
 		retrieveCosts();	
 	}
 	
